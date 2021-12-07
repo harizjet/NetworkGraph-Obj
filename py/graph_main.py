@@ -1,4 +1,5 @@
 import sys
+import json
 from graph import Graph, Node
 
 
@@ -9,9 +10,9 @@ if __name__ == '__main__':
 	ins = argv[1] if len(argv) > 1 else None
 
 	if ins == 'directed':
-		target = '../data/directed.json'
+		target = '../data/directed_py.json'
 	elif ins == 'undirected':
-		target = '../data/undirected.json'
+		target = '../data/undirected_py.json'
 	else:
 		raise Exception('Wrong file argument')
 
@@ -38,3 +39,10 @@ if __name__ == '__main__':
 		i_n += 1
 
 	
+	output = {
+		'nodes': graph_obj.generate_nodes_list(),
+		'edges': graph_obj.generate_all_edges_list()
+	}
+
+	with open(target, 'w') as f:
+		json.dump(output, f, indent=3)
