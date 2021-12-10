@@ -10,9 +10,9 @@ if __name__ == '__main__':
 	ins = argv[1] if len(argv) > 1 else None
 
 	if ins == 'directed':
-		target = '../data/directed_py.json'
+		target = '../data/directed.json'
 	elif ins == 'undirected':
-		target = '../data/undirected_py.json'
+		target = '../data/undirected.json'
 	else:
 		raise Exception('Wrong file argument')
 
@@ -20,25 +20,17 @@ if __name__ == '__main__':
 	for _ in range(int(input())):
 		graph_obj.add_node(Node(*input().split(' ')))
 
-	edges = []
+
 	for _ in range(int(input())):
-		edges.append(input().split(' '))
-	edges.sort(key=lambda x: x[0])
+		source, destination = input().split(' ')
 
-	i_n, i_e = 0, 0
-	while i_n < len(graph_obj.nodes) - 1  or i_e < len(edges):
-		curN = graph_obj.nodes[i_n]
+		if ins == 'directed':
+			graph_obj.add_directed_edges(sourId=source, 
+				destId=destination)
+		else:
+			graph_obj.add_undirected_edges(sourId=source, 
+				destId=destination)
 
-		curEd = edges[i_e]
-
-		if curEd[0] == curN.id:
-			curN.add_edge(curEd[1])
-			i_e += 1
-			continue
-
-		i_n += 1
-
-	
 	output = {
 		'nodes': graph_obj.generate_nodes_list(),
 		'edges': graph_obj.generate_all_edges_list()
