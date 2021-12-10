@@ -1,0 +1,63 @@
+<!DOCTYPE >
+
+<html>
+  <head>
+    <title>UnDirected Graph</title>
+
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"
+    />
+
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/shim.min.js"></script>
+    <script src="https://unpkg.com/layout-base/layout-base.js"></script>
+    <script src="https://unpkg.com/avsdf-base/avsdf-base.js"></script>
+
+    <style>
+      body {
+        font-family: helvetica;
+        font-size: 15px;
+      }
+
+      #cy {
+        width: 100%;
+        height: 90%;
+        z-index: 999;
+      }
+
+      h1 {
+        opacity: 0.5;
+        font-size: 1em;
+        font-weight: bold;
+      }
+
+      button {
+        font-size: 15px;
+        margin-right: 10px;
+      }
+
+      .line {
+        clear: left;
+        height: 25px;
+        margin-top: 6px;
+        margin-right: 6px;
+        margin-bottom: 6px;
+      }
+
+      .radio {
+        margin-left: 25px;
+      }
+    </style>
+
+    <script src="scripts/utils/cytoscape-avsdf.js"></script>
+    <script src="scripts/undirected_bundle.js"></script>
+  </head>
+
+  <body>
+    <h1>UnDirected Graph</h1>
+    <a href="directed_index.html">Directed Graph</a>
+
+    <div id="cy"></div>
+  </body>
+</html>
