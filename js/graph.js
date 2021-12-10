@@ -40,22 +40,31 @@ let Node = class {
 
 let Graph = class {
 	constructor() {
-		this.nodes = [];
+		this.nodes = {};
 	}
 
 	add_node(Node) {
-		this.nodes.push(Node);
+		this.nodes[Node.id] = Node;
+	}
+
+	add_directed_edges(sourId, destId) {
+		this.nodes[sourId].add_edge(destId);
+	}
+
+	add_undirected_edges(sourId, destId) {
+		this.nodes[sourId].add_edge(destId);
+		this.nodes[destId].add_edge(sourId);
 	}
 
 	generate_nodes_list() {
 		let tlist = [];
 		var cur;
 
-		for (let i = 0; i < this.nodes.length; i ++) {
+		for (let key in this.nodes) {
 			cur = {
 				'data': {
-					'id': this.nodes[i].id,
-					'name': this.nodes[i].label
+					'id': this.nodes[key].id,
+					'name': this.nodes[key].label
 				}
 			}
 			tlist.push(cur);
@@ -68,8 +77,8 @@ let Graph = class {
 		let tlist = []
 		var cur;
 
-		for (let i = 0; i < this.nodes.length; i ++) {
-			cur = this.nodes[i].generate_edges_list()
+		for (let key in this.nodes) {
+			cur = this.nodes[key].generate_edges_list()
 			tlist = tlist.concat(cur)
 		}
 

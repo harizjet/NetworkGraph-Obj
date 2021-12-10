@@ -13,9 +13,9 @@ if (argv.length > 2) {
 
 var target;
 if (ins === 'directed') {
-	target = '../data/directed_js.json';
+	target = '../data/directed.json';
 } else if (ins === 'undirected') {
-	target = '../data/undirected_js.json';
+	target = '../data/undirected.json';
 } else {
 	throw Error('Wrong file argument');
 }
@@ -32,29 +32,15 @@ for (let i = 0; i < n; i ++) {
 
 n = input.question();
 var curEdg;
-let edges = [];
 
 for (let i = 0; i < n; i ++) {
 	curEdg = input.question().split(' ');
-	edges.push(curEdg);
-}
 
-edges.sort((f, l) => { return f[0] - l[0]; });
-
-let i_n = 0; i_e = 0;
-var curN, curEd;
-while ((i_n < graph_obj.nodes.length - 1) || (i_e < edges.length)) {
-	curN = graph_obj.nodes[i_n];
-
-	curEd = edges[i_e];
-
-	if (curEd[0] === curN.id) {
-		curN.add_edge(curEd[1]);
-		i_e ++;
-		continue;
+	if (ins === 'directed') {
+		graph_obj.add_directed_edges(curEdg[0], curEdg[1]);
+	} else {
+		graph_obj.add_undirected_edges(curEdg[0], curEdg[1]);
 	}
-
-	i_n ++;
 }
 
 let output = {
