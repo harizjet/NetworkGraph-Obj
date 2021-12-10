@@ -1,16 +1,25 @@
+class AdjNode(object):
+	def __init__(self, id):
+		self.id = id
+		self.next = None
+		
 class Node(object):
 	def __init__(self, id: str, label: str):
 		self.id = id
 		self.label = label
-		self.edges = []
+		self.edge = None
 
 	def add_edge(self, id: str):
-		self.edges.append(id)
+		adj_node = AdjNode(id)
+		adj_node.next = self.edge
+		self.edge = adj_node
 
 	def generate_edges_list(self) -> list:
 		tlist = []
-		for edge in self.edges:
-			cur = { 'data': { 'source': self.id, 'target': edge}}
+		cur_adj = self.edge 
+		while cur_adj:
+			cur = { 'data': { 'source': self.id, 'target': cur_adj.id}}
+			cur_adj = cur_adj.next
 			tlist.append(cur)
 		return tlist
 

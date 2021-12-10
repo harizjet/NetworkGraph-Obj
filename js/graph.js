@@ -1,25 +1,36 @@
+let AdjNode = class {
+	constructor(id) {
+		this.id = id;
+		this.next = null;
+	}
+}
+
 let Node = class {
 	constructor(id, label) {
 		this.id = id;
 		this.label = label;
-		this.edges = [];
+		this.edge = null;
 	}
 
 	add_edge(id) {
-		this.edges.push(id);
+		let adj_node = new AdjNode(id);
+		adj_node.next = this.edge;
+		this.edge = adj_node;
 	}
 
 	generate_edges_list() {
 		let tlist = [];
+		let cur_adj = this.edge;
 		var cur;
 
-		for (let i = 0; i < this.edges.length; i++) {
+		while (cur_adj) {
 			cur = {
 				'data': {
 					'source': this.id,
-					'target': this.edges[i]
+					'target': cur_adj.id
 				}
 			}
+			cur_adj = cur_adj.next;
 			tlist.push(cur);
 		}
 
