@@ -8,11 +8,9 @@ read_json().then((data) => {
   window.cy = cytoscape({
     container: document.getElementById("cy"),
 
-    boxSelectionEnabled: false,
-    autounselectify: true,
-
     layout: {
       name: "dagre",
+      nodeSeparation: 120,
     },
 
     style: [

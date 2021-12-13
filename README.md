@@ -24,8 +24,9 @@
 
 <div >
     <h2>Sample result</h2>
-    <img src='img/directed_result.png' style="width:400px;height:300px;">
-    <img src='img/undirected_result.png' style="width:400px;height:300px;">
+    <img src='img/directed_result.png' style="width:275px;height:300px;">
+    <img src='img/undirected_result.png' style="width:275px;height:300px;">
+    <img src='img/dag_result.png' style="width:275px;height:300px;">
 </div>
 
 <br>
@@ -35,5 +36,6 @@
     <ol>
         <li>cytoscape</li>
         <li>cytoscape-avsdf</li>
+        <li>cytoscape-dagre</li>
     <ol>
 </div>
