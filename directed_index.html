@@ -2,13 +2,13 @@
 
 <html>
   <head>
-    <title>Directed Graph</title>
+    <title>Directed Acyclic Graph</title>
 
     <meta
       name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"
     />
-
+    <script src="https://unpkg.com/dagre@0.7.4/dist/dagre.js"></script>
     <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/shim.min.js"></script>
     <script src="https://unpkg.com/layout-base/layout-base.js"></script>
@@ -51,12 +51,14 @@
     </style>
 
     <script src="scripts/utils/cytoscape-avsdf.js"></script>
-    <script src="scripts/directed_bundle.js"></script>
+    <script src="scripts/utils/cytoscape-dagre.js"></script>
+    <script src="scripts/directed.js"></script>
   </head>
 
   <body>
-    <h1>Directed Graph</h1>
-    <a href="undirected_index.html">UnDirected Graph</a>
+    <h1>Directed Acyclic Graph</h1>
+    <a href="undirected_index.html">UnDirected Graph</a><br />
+    <a href="topo_index.html">Directed Acyclic Graph</a>
 
     <div id="cy"></div>
   </body>

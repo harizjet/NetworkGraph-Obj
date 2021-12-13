@@ -1,16 +1,18 @@
 var read_json = async function () {
-  const response = await fetch("../data/directed.json");
+  const response = await fetch("../data/dag.json");
   const data = await response.json();
   return data;
 };
 
 read_json().then((data) => {
-  cytoscape({
+  window.cy = cytoscape({
     container: document.getElementById("cy"),
 
+    boxSelectionEnabled: false,
+    autounselectify: true,
+
     layout: {
-      name: "avsdf",
-      nodeSeparation: 120,
+      name: "dagre",
     },
 
     style: [
@@ -27,11 +29,11 @@ read_json().then((data) => {
       {
         selector: "edge",
         style: {
-          "curve-style": "bezier",
+          width: 4,
           "target-arrow-shape": "triangle",
-          width: 2,
-          "line-color": "#3a7ecf",
-          opacity: 0.5,
+          "line-color": "#9dbaea",
+          "target-arrow-color": "#9dbaea",
+          "curve-style": "bezier",
         },
       },
     ],

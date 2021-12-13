@@ -13,8 +13,8 @@ if __name__ == '__main__':
 		target = '../data/directed.json'
 	elif ins == 'undirected':
 		target = '../data/undirected.json'
-	elif ins == 'topo':
-		target = '../data/topo.json'
+	elif ins == 'dag':
+		target = '../data/dag.json'
 	else:
 		raise Exception('Wrong file argument')
 

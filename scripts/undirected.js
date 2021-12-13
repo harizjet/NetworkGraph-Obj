@@ -1,7 +1,11 @@
-var data = require("../data/undirected_py.json");
+var read_json = async function () {
+  const response = await fetch("../data/undirected.json");
+  const data = await response.json();
+  return data;
+};
 
-document.addEventListener("DOMContentLoaded", function () {
-  var cy = (window.cy = cytoscape({
+read_json().then((data) => {
+  cytoscape({
     container: document.getElementById("cy"),
 
     layout: {
@@ -31,5 +35,5 @@ document.addEventListener("DOMContentLoaded", function () {
     ],
 
     elements: data,
-  }));
+  });
 });
