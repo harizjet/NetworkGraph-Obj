@@ -84,6 +84,45 @@ let Graph = class {
 
 		return tlist;
 	}
+
+	generate_topo_sort() {
+		var cur;
+		let thash = {};
+		let ans = [];
+
+		for (let key in this.nodes) {
+			thash[key] = 0;
+		}
+
+		for (let key in this.nodes) {
+			cur = this.nodes[key].edge;
+			while (cur) {
+				thash[cur.id] ++;
+				cur = cur.next;
+			}
+		}
+
+		let tans = [];
+		for (let key in thash) {
+			if (thash[key] == 0) {
+				tans.push(key);
+			} 
+		}
+
+		while (tans.length) {
+			let val = tans.shift();
+			ans.push(val);
+			cur = this.nodes[val].edge;
+			while (cur) {
+				thash[cur.id] --;
+				if (thash[cur.id] === 0) {
+					tans.push(cur.id);
+				}
+				cur = cur.next;
+			}
+		}
+		return ans;
+	}
 }
 
 

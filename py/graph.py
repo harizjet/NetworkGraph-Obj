@@ -49,3 +49,30 @@ class Graph(object):
 		for node in self.nodes.values():
 			tlist += node.generate_edges_list()
 		return tlist
+
+	def generate_topo_sort(self) -> list:
+		ans = []
+		thash = {id: 0 for id in self.nodes.keys()}
+
+		for node in self.nodes.values():
+			cur = node.edge
+			while cur:
+				thash[cur.id] += 1
+				cur = cur.next
+
+		tans = []
+		for k, v in thash.items():
+			if v == 0:
+				tans.append(k)
+
+		while tans:
+			val = tans.pop(0)
+			ans.append(val)
+			cur = self.nodes[val].edge
+			while cur:
+				thash[cur.id] -= 1
+				if thash[cur.id] == 0:
+					tans.append(cur.id)
+				cur = cur.next
+				
+		return ans 

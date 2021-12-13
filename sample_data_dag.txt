@@ -1,0 +1,19 @@
+8
+0 Ali
+1 Abu
+2 Xin
+3 John
+4 Ahmad
+5 Alex
+6 Peter
+7 Najib
+9
+5 2
+5 0
+4 0
+4 1
+2 3
+3 1
+6 7
+4 7
+1 6

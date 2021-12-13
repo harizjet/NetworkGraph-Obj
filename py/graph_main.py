@@ -13,6 +13,8 @@ if __name__ == '__main__':
 		target = '../data/directed.json'
 	elif ins == 'undirected':
 		target = '../data/undirected.json'
+	elif ins == 'topo':
+		target = '../data/topo.json'
 	else:
 		raise Exception('Wrong file argument')
 
@@ -24,17 +26,21 @@ if __name__ == '__main__':
 	for _ in range(int(input())):
 		source, destination = input().split(' ')
 
-		if ins == 'directed':
-			graph_obj.add_directed_edges(sourId=source, 
+		if ins == 'undirected':
+			graph_obj.add_undirected_edges(sourId=source, 
 				destId=destination)
 		else:
-			graph_obj.add_undirected_edges(sourId=source, 
+			graph_obj.add_directed_edges(sourId=source, 
 				destId=destination)
 
 	output = {
 		'nodes': graph_obj.generate_nodes_list(),
 		'edges': graph_obj.generate_all_edges_list()
 	}
+
+	if ins == 'topo':
+		if len(graph_obj.generate_topo_sort()) != len(graph_obj.nodes):
+			raise Exception('Not a DAG data')
 
 	with open(target, 'w') as f:
 		json.dump(output, f, indent=3)
