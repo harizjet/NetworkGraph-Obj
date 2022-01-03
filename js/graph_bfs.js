@@ -18,16 +18,16 @@ let Graph_Searching_BFS = class extends Graph {
       while (traverseWay.length) {
         let curVal = traverseWay.shift();
         let curNode = curVal[0];
-        let curpath = curVal[1];
-        traverse_path.push(curNode.label);
+        let curPath = curVal[1];
         curNode.visited = true;
         curNode.color = "black";
+        traverse_path.push(curNode.label);
         if (curNode.id === end_id) {
-          return curpath;
+          return curPath;
         } else {
           let neigh = curNode.edge;
           while (neigh) {
-            let temp = [...curpath];
+            let temp = [...curPath];
             let thenode = graph_obj.nodes[neigh.id];
             if (!thenode.visited) {
               thenode.color = "grey";

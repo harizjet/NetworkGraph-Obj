@@ -7,8 +7,9 @@
 5 Alex
 6 Peter
 7 Najib
-9
+10
 5 2
+5 4
 5 0
 4 0
 4 1

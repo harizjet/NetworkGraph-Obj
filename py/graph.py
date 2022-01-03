@@ -2,7 +2,7 @@ class AdjNode(object):
 	def __init__(self, id):
 		self.id = id
 		self.next = None
-		
+
 class Node(object):
 	def __init__(self, id: str, label: str):
 		self.id = id
@@ -16,7 +16,7 @@ class Node(object):
 
 	def generate_edges_list(self) -> list:
 		tlist = []
-		cur_adj = self.edge 
+		cur_adj = self.edge
 		while cur_adj:
 			cur = { 'data': { 'source': self.id, 'target': cur_adj.id}}
 			cur_adj = cur_adj.next
@@ -74,5 +74,5 @@ class Graph(object):
 				if thash[cur.id] == 0:
 					tans.append(cur.id)
 				cur = cur.next
-				
-		return ans 
+
+		return ans

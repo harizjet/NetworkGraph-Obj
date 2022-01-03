@@ -11,10 +11,11 @@ let Graph_Searching_DFS = class extends Graph {
     }
     this.graph_obj = graph_obj;
     this.traverse_path = [];
+    this.pathNode = [];
   }
 
   find_the_node(start_id, end_id) {
-    let search_node = function (node, curpath, graph_obj) {
+    let search_node = function (node, curpath) {
       if (pathNode.length || node.visited) {
         return;
       }
@@ -23,7 +24,7 @@ let Graph_Searching_DFS = class extends Graph {
       node.color = "black";
       if (node.id === end_id) {
         pathNode = curpath;
-      } else if (!pathNode.length) {
+      } else {
         let cur = node.edge;
         while (cur) {
           let temp = [...curpath];
@@ -32,17 +33,19 @@ let Graph_Searching_DFS = class extends Graph {
           thenode.time = node.time + 1;
           thenode.predecessor = node.id;
           temp.push(thenode);
-          search_node(thenode, temp, graph_obj);
+          search_node(thenode, temp);
           cur = cur.next;
         }
       }
     };
-    let pathNode = [];
     let start_node = this.graph_obj.nodes[start_id];
     let traverse_path = this.traverse_path;
-    search_node(start_node, [start_node], this.graph_obj);
-    console.log(traverse_path);
-    return pathNode;
+    let pathNode = this.pathNode;
+    let graph_obj = this.graph_obj;
+    search_node(start_node, [start_node]);
+    this.pathNode = pathNode;
+    console.log(this.traverse_path);
+    return this.pathNode;
   }
 };
 

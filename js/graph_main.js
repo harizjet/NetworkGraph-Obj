@@ -30,7 +30,6 @@ if (target === undefined) {
 
 // initialized graph
 const graph_obj = new Graph();
-
 let n = input.question();
 var curNode;
 
@@ -73,8 +72,10 @@ if (ins[0] === "create_graph") {
   var search_obj;
   if (ins[2] === "bfs") {
     search_obj = new Graph_Searching_BFS(graph_obj);
-  } else {
+  } else if (ins[2] === "dfs") {
     search_obj = new Graph_Searching_DFS(graph_obj);
+  } else {
+    throw new Error("Option not available");
   }
   let result = search_obj.find_the_node(start_id, end_id);
   console.log(result);
