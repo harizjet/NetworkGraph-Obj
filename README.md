@@ -3,27 +3,23 @@
 <div >
     <h2>Objective</h2>
     <ol>
-        <li>Create Graph data structure using linked list</li>
-        <li>Create json file containing edges and nodes</li>
-        <li>Visualize using npm libraries in browsers</li>
+        <li>Create Graph Data Structure</li>
     <ol>
 </div>
 
 <br>
 
 <div >
-    <h2>Steps</h2>
+    <h2>How</h2>
     <ol>
-        <li>Run <samp>graph_main.py</samp> or <samp>graph_main.js</samp> to save data as json file</li>
-        <li>Pass data to argument (1) sample can be seen in <samp>sample_data.txt</samp></li>
-        <li>View the HTML file</li>
+        <li>Create data and save into json using <samp>graph_main.py</samp> or <samp>graph_main.js</samp></li>
     <ol>
 </div>
 
 <br>
 
 <div >
-    <h2>Sample result</h2>
+    <h2>Result</h2>
     <img src='img/directed_result.png' style="width:275px;height:300px;">
     <img src='img/undirected_result.png' style="width:275px;height:300px;">
     <img src='img/dag_result.png' style="width:275px;height:300px;">
