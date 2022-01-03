@@ -10,38 +10,39 @@ let Graph_Searching_DFS = class extends Graph {
       graph_obj.nodes[graph_id].predecessor = Infinity;
     }
     this.graph_obj = graph_obj;
+    this.traverse_path = [];
   }
 
   find_the_node(start_id, end_id) {
-    let foundNode = null;
-    let pathNode = [];
-    let search_node = function (node, target_id, graph_obj, curpath) {
+    let search_node = function (node, curpath, graph_obj) {
+      if (pathNode.length || node.visited) {
+        return;
+      }
+      traverse_path.push(node.label);
       node.visited = true;
       node.color = "black";
-      if (node.id === target_id) {
-        foundNode = node;
+      if (node.id === end_id) {
         pathNode = curpath;
-      } else if (!foundNode) {
+      } else if (!pathNode.length) {
         let cur = node.edge;
-        if (!cur || cur.visited) {
-          return;
-        }
         while (cur) {
           let temp = [...curpath];
-          graph_obj.nodes[cur.id].color = "grey";
-          graph_obj.nodes[cur.id].time = node.time + 1;
-          graph_obj.nodes[cur.id].predecessor = node.id;
-          temp.push(graph_obj.nodes[cur.id]);
-          search_node(graph_obj.nodes[cur.id], target_id, graph_obj, temp);
+          let thenode = graph_obj.nodes[cur.id];
+          thenode.color = "grey";
+          thenode.time = node.time + 1;
+          thenode.predecessor = node.id;
+          temp.push(thenode);
+          search_node(thenode, temp, graph_obj);
           cur = cur.next;
         }
       }
     };
-
+    let pathNode = [];
     let start_node = this.graph_obj.nodes[start_id];
-    search_node(start_node, end_id, this.graph_obj, [start_node]);
-    console.log(pathNode);
-    return foundNode;
+    let traverse_path = this.traverse_path;
+    search_node(start_node, [start_node], this.graph_obj);
+    console.log(traverse_path);
+    return pathNode;
   }
 };
 

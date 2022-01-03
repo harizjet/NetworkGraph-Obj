@@ -1,5 +1,6 @@
 const { Graph, Node } = require("./graph.js");
 const Graph_Searching_DFS = require("./graph_dfs.js");
+const Graph_Searching_BFS = require("./graph_bfs.js");
 const input = require("readline-sync");
 const fs = require("fs");
 
@@ -16,8 +17,8 @@ var start_id, end_id;
 if (ins[0] === "create_graph") {
   // pass
 } else if (ins[0] === "search_graph") {
-  start_id = ins[2];
-  end_id = ins[3];
+  start_id = ins[3];
+  end_id = ins[4];
 } else {
   throw Error("Wrong file argument");
 }
@@ -69,7 +70,12 @@ if (ins[0] === "create_graph") {
 
   fs.writeFileSync(target, JSON.stringify(output, null, 3));
 } else if (ins[0] === "search_graph") {
-  let search_obj = new Graph_Searching_DFS(graph_obj);
+  var search_obj;
+  if (ins[2] === "bfs") {
+    search_obj = new Graph_Searching_BFS(graph_obj);
+  } else {
+    search_obj = new Graph_Searching_DFS(graph_obj);
+  }
   let result = search_obj.find_the_node(start_id, end_id);
   console.log(result);
 }
