@@ -1,27 +1,33 @@
 const { Graph, Node } = require("./graph.js");
+const Graph_Searching_DFS = require("./graph_dfs.js");
 const input = require("readline-sync");
 const fs = require("fs");
 
-argv = process.argv;
+let argv = process.argv.slice(2);
+let ins = argv;
 
-var ins;
-if (argv.length > 2) {
-  ins = argv[2];
-} else {
-  ins = null;
-}
+let data_dir = {
+  directed: "../data/directed.json",
+  undirected: "../data/undirected.json",
+  dag: "../data/dag.json",
+};
 
-var target;
-if (ins === "directed") {
-  target = "../data/directed.json";
-} else if (ins === "undirected") {
-  target = "../data/undirected.json";
-} else if (ins === "dag") {
-  target = "../data/dag.json";
+var start_id, end_id;
+if (ins[0] === "create_graph") {
+  // pass
+} else if (ins[0] === "search_graph") {
+  start_id = ins[2];
+  end_id = ins[3];
 } else {
   throw Error("Wrong file argument");
 }
 
+let target = data_dir[ins[1]];
+if (target === undefined) {
+  throw Error("Wrong file argument");
+}
+
+// initialized graph
 const graph_obj = new Graph();
 
 let n = input.question();
@@ -38,25 +44,32 @@ var curEdg;
 for (let i = 0; i < n; i++) {
   curEdg = input.question().split(" ");
 
-  if (ins === "undirected") {
+  if (ins[1] === "undirected") {
     graph_obj.add_undirected_edges(curEdg[0], curEdg[1]);
   } else {
     graph_obj.add_directed_edges(curEdg[0], curEdg[1]);
   }
 }
 
-let output = {
-  nodes: graph_obj.generate_nodes_list(),
-  edges: graph_obj.generate_all_edges_list(),
-};
+// run instruction
+if (ins[0] === "create_graph") {
+  let output = {
+    nodes: graph_obj.generate_nodes_list(),
+    edges: graph_obj.generate_all_edges_list(),
+  };
 
-if (ins === "topo") {
-  if (
-    graph_obj.generate_topo_sort().length !==
-    Object.keys(graph_obj.nodes).length
-  ) {
-    throw new Error("Not a DAG data");
+  if (ins[1] === "dag") {
+    if (
+      graph_obj.generate_topo_sort().length !==
+      Object.keys(graph_obj.nodes).length
+    ) {
+      throw new Error("Not a DAG data");
+    }
   }
-}
 
-fs.writeFileSync(target, JSON.stringify(output, null, 3));
+  fs.writeFileSync(target, JSON.stringify(output, null, 3));
+} else if (ins[0] === "search_graph") {
+  let search_obj = new Graph_Searching_DFS(graph_obj);
+  let result = search_obj.find_the_node(start_id, end_id);
+  console.log(result);
+}
