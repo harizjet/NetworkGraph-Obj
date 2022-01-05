@@ -2,7 +2,7 @@ from graph import Graph
 import math
 
 class Graph_Searching_BFS(Graph):
-    def __init__(self, graph_obj):
+    def __init__(self, graph_obj: Graph):
         super().__init__()
         for node in graph_obj.nodes.values():
             node.visited = False
@@ -12,8 +12,8 @@ class Graph_Searching_BFS(Graph):
         self.graph_obj = graph_obj
         self.traverse_path = []
 
-    def find_the_node(self,start_id, end_id):
-        def search_node():
+    def find_the_node(self, start_id: int, end_id: int) -> list:
+        def search_node() -> None:
             while traverseWay:
                 curVal = traverseWay.pop(0)
                 curNode = curVal[0]

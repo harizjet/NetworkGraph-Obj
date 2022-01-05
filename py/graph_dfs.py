@@ -1,8 +1,8 @@
-from graph import Graph 
+from graph import Graph, Node
 import math
 
 class Graph_Searching_DFS(Graph):
-    def __init__(self, graph_obj):
+    def __init__(self, graph_obj: Graph):
         super().__init__()
         for node in graph_obj.nodes.values():
             node.visited = False
@@ -12,8 +12,8 @@ class Graph_Searching_DFS(Graph):
         self.graph_obj = graph_obj
         self.traverse_path = []
         self.pathNode = []
-    def find_the_node(self, start_id, end_id):
-        def search_node(node, curpath):
+    def find_the_node(self, start_id: int, end_id: int) -> list:
+        def search_node(node: Node, curpath: list) -> list:
             if self.pathNode or node.visited:
                 return
             self.traverse_path.append(node.label)
