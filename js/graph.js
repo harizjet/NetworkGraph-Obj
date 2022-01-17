@@ -1,6 +1,7 @@
 let AdjNode = class {
-  constructor(id) {
+  constructor(id, weight) {
     this.id = id;
+    this.weight = Number(weight);
     this.next = null;
   }
 };
@@ -12,8 +13,8 @@ let Node = class {
     this.edge = null;
   }
 
-  add_edge(id) {
-    let adj_node = new AdjNode(id);
+  add_edge(id, weight) {
+    let adj_node = new AdjNode(id, weight);
     adj_node.next = this.edge;
     this.edge = adj_node;
   }
@@ -47,13 +48,13 @@ let Graph = class {
     this.nodes[Node.id] = Node;
   }
 
-  add_directed_edges(sourId, destId) {
-    this.nodes[sourId].add_edge(destId);
+  add_directed_edges(sourId, destId, dist) {
+    this.nodes[sourId].add_edge(destId, dist);
   }
 
-  add_undirected_edges(sourId, destId) {
-    this.nodes[sourId].add_edge(destId);
-    this.nodes[destId].add_edge(sourId);
+  add_undirected_edges(sourId, destId, dist) {
+    this.nodes[sourId].add_edge(destId, dist);
+    this.nodes[destId].add_edge(sourId, dist);
   }
 
   generate_nodes_list() {

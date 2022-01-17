@@ -1,6 +1,7 @@
 const { Graph, Node } = require("./graph.js");
 const Graph_Searching_DFS = require("./graph_dfs.js");
 const Graph_Searching_BFS = require("./graph_bfs.js");
+const Graph_Djisktra = require("./graph_djikstra.js");
 const input = require("readline-sync");
 const fs = require("fs");
 
@@ -19,6 +20,9 @@ if (ins[0] === "create_graph") {
 } else if (ins[0] === "search_graph") {
   start_id = ins[3];
   end_id = ins[4];
+} else if (ins[0] === "shortest_path") {
+  start_id = ins[2];
+  end_id = ins[3];
 } else {
   throw Error("Wrong file argument");
 }
@@ -45,9 +49,9 @@ for (let i = 0; i < n; i++) {
   curEdg = input.question().split(" ");
 
   if (ins[1] === "undirected") {
-    graph_obj.add_undirected_edges(curEdg[0], curEdg[1]);
+    graph_obj.add_undirected_edges(curEdg[0], curEdg[1], curEdg[2]);
   } else {
-    graph_obj.add_directed_edges(curEdg[0], curEdg[1]);
+    graph_obj.add_directed_edges(curEdg[0], curEdg[1], curEdg[2]);
   }
 }
 
@@ -78,5 +82,9 @@ if (ins[0] === "create_graph") {
     throw new Error("Option not available");
   }
   let result = search_obj.find_the_node(start_id, end_id);
+  console.log(result);
+} else if (ins[0] === "shortest_path") {
+  let search_obj = new Graph_Djisktra(graph_obj);
+  let result = search_obj.search(start_id, end_id);
   console.log(result);
 }

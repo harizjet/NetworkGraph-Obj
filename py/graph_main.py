@@ -3,6 +3,7 @@ import json
 from graph import Graph, Node
 from graph_dfs import Graph_Searching_DFS
 from graph_bfs import Graph_Searching_BFS
+from graph_djikstra import Graph_Djisktra
 
 
 if __name__ == '__main__':
@@ -22,8 +23,8 @@ if __name__ == '__main__':
 		start_id = ins[3]
 		end_id = ins[4]
 	elif ins[0] == "shortest_path":
-		start_node = ins[3]
-		end_node = ins[4]
+		start_id = ins[2]
+		end_id = ins[3]
 	else:
 		raise Exception('Wrong file argument')
 
@@ -69,4 +70,9 @@ if __name__ == '__main__':
 		else:
 			raise Exception("Option not available")
 		result = search_obj.find_the_node(start_id, end_id)
+		print(result)
+	
+	elif ins[0] == "shortest_path":
+		search_obj = Graph_Djisktra(graph_obj)
+		result = search_obj.search(start_id, end_id)
 		print(result)
