@@ -1,6 +1,7 @@
 class AdjNode(object):
-	def __init__(self, id):
+	def __init__(self, id, weight):
 		self.id = id
+		self.weight  = None
 		self.next = None
 
 class Node(object):
@@ -9,8 +10,8 @@ class Node(object):
 		self.label = label
 		self.edge = None
 
-	def add_edge(self, id: str):
-		adj_node = AdjNode(id)
+	def add_edge(self, id: str, weight: int):
+		adj_node = AdjNode(id, weight)
 		adj_node.next = self.edge
 		self.edge = adj_node
 
@@ -30,12 +31,12 @@ class Graph(object):
 	def add_node(self, node: Node):
 		self.nodes[node.id] = node
 
-	def add_directed_edges(self, sourId: str, destId: str):
-		self.nodes[sourId].add_edge(destId)
+	def add_directed_edges(self, sourId: str, destId: str, dist: int):
+		self.nodes[sourId].add_edge(destId, dist)
 
-	def add_undirected_edges(self, sourId: str, destId: str):
-		self.nodes[sourId].add_edge(destId)
-		self.nodes[destId].add_edge(sourId)
+	def add_undirected_edges(self, sourId: str, destId: str, dist: int):
+		self.nodes[sourId].add_edge(destId, dist)
+		self.nodes[destId].add_edge(sourId, dist)
 
 	def generate_nodes_list(self) -> list:
 		tlist = []

@@ -21,6 +21,9 @@ if __name__ == '__main__':
 	elif ins[0] == "search_graph":
 		start_id = ins[3]
 		end_id = ins[4]
+	elif ins[0] == "shortest_path":
+		start_node = ins[3]
+		end_node = ins[4]
 	else:
 		raise Exception('Wrong file argument')
 
@@ -35,14 +38,14 @@ if __name__ == '__main__':
 
 
 	for _ in range(int(input())):
-		source, destination = input().split(' ')
+		source, destination, distance = input().split(' ')
 
 		if ins[1] == 'undirected':
 			graph_obj.add_undirected_edges(sourId=source, 
-				destId=destination)
+				destId=destination, dist=distance)
 		else:
 			graph_obj.add_directed_edges(sourId=source, 
-				destId=destination)
+				destId=destination, dist=distance)
 
 	# run instruction
 	if ins[0] == "create_graph":
