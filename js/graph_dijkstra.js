@@ -1,6 +1,6 @@
 let { Graph, Node } = require("./graph.js");
 
-let Graph_Djisktra = class extends Graph {
+let Graph_Dijkstra = class extends Graph {
   constructor(graph_obj) {
     super();
     for (let graph_id in graph_obj.nodes) {
@@ -40,4 +40,4 @@ let Graph_Djisktra = class extends Graph {
   }
 };
 
-module.exports = Graph_Djisktra;
+module.exports = Graph_Dijkstra;

@@ -1,6 +1,6 @@
 from graph import Graph, Node
 
-class Graph_Djisktra(Graph):
+class Graph_Dijkstra(Graph):
     def __init__(self, graph_obj: Graph):
         super().__init__()
         for node in graph_obj.nodes.values():

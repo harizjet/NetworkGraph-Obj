@@ -3,7 +3,7 @@ import json
 from graph import Graph, Node
 from graph_dfs import Graph_Searching_DFS
 from graph_bfs import Graph_Searching_BFS
-from graph_djikstra import Graph_Djisktra
+from graph_dijkstra import Graph_Dijkstra
 
 
 if __name__ == '__main__':
@@ -73,6 +73,6 @@ if __name__ == '__main__':
 		print(result)
 	
 	elif ins[0] == "shortest_path":
-		search_obj = Graph_Djisktra(graph_obj)
+		search_obj = Graph_Dijkstra(graph_obj)
 		result = search_obj.search(start_id, end_id)
 		print(result)

@@ -1,7 +1,7 @@
 const { Graph, Node } = require("./graph.js");
 const Graph_Searching_DFS = require("./graph_dfs.js");
 const Graph_Searching_BFS = require("./graph_bfs.js");
-const Graph_Djisktra = require("./graph_djikstra.js");
+const Graph_Dijkstra = require("./graph_dijkstra.js");
 const input = require("readline-sync");
 const fs = require("fs");
 
@@ -84,7 +84,7 @@ if (ins[0] === "create_graph") {
   let result = search_obj.find_the_node(start_id, end_id);
   console.log(result);
 } else if (ins[0] === "shortest_path") {
-  let search_obj = new Graph_Djisktra(graph_obj);
+  let search_obj = new Graph_Dijkstra(graph_obj);
   let result = search_obj.search(start_id, end_id);
   console.log(result);
 }
