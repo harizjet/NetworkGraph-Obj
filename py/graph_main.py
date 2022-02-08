@@ -39,7 +39,9 @@ if __name__ == '__main__':
 
 
 	for _ in range(int(input())):
-		source, destination, distance = input().split(' ')
+		curEdg = input().split(' ')
+		source, destination, distance = \
+			curEdg[0], curEdg[1], curEdg[2] if len(curEdg) > 2 else 0
 
 		if ins[1] == 'undirected':
 			graph_obj.add_undirected_edges(sourId=source, 

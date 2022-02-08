@@ -47,11 +47,13 @@ var curEdg;
 
 for (let i = 0; i < n; i++) {
   curEdg = input.question().split(" ");
-
+  let source = curEdg[0],
+    destination = curEdg[1],
+    distance = curEdg.length > 2 ? curEdg[2] : 0;
   if (ins[1] === "undirected") {
-    graph_obj.add_undirected_edges(curEdg[0], curEdg[1], curEdg[2]);
+    graph_obj.add_undirected_edges(source, destination, distance);
   } else {
-    graph_obj.add_directed_edges(curEdg[0], curEdg[1], curEdg[2]);
+    graph_obj.add_directed_edges(source, destination, distance);
   }
 }
 
